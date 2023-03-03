@@ -21,7 +21,7 @@ export async function shortenUrl(req, res) {
 
 export async function deleteUrl(req, res) {
   const userId = res.locals;
-  const { urlId } = req.params;
+  const urlId = req.params;
   try {
     const url = await db.query(`SELECT * FROM urls WHERE id=$1;`, [urlId]);
     if (url.rows.length == 0) {
@@ -45,7 +45,7 @@ export async function getUser(req, res) {
       userId,
     ]);
     const urls = await db.query(
-      `SELECT id,"shortUrl",url,views FROM "ShortenedUrls" WHERE "userId"=$1`,
+      `SELECT id,"shortUrl",url,views FROM urls WHERE "userId"=$1`,
       [userId]
     );
 

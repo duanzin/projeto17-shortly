@@ -21,8 +21,9 @@ export async function shortenUrl(req, res) {
 
 export async function deleteUrl(req, res) {
   const userId = res.locals;
-  const urlId = req.params;
+  const urlId = req.params.id;
   try {
+    console.log(urlId);
     const url = await db.query(`SELECT * FROM urls WHERE id=$1;`, [urlId]);
     if (url.rows.length == 0) {
       return res.sendStatus(404);

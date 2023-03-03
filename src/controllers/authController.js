@@ -29,9 +29,12 @@ export async function signIn(req, res) {
     const user = await db.query(`SELECT * FROM users WHERE email = $1`, [
       email,
     ]);
-    const passmatch = await bcrypt.compareSync(password, user.rows[0].password);
+    if (user.rows.length == 0) {
+      return res.sendStatus(401);
+    }
 
-    if (user.rows.length == 0 || !passmatch) {
+    const passmatch = await bcrypt.compareSync(password, user.rows[0].password);
+    if (!passmatch) {
       return res.sendStatus(401);
     }
 

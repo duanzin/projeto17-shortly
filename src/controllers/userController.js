@@ -2,7 +2,7 @@ import { db } from "../config/database.js";
 import { nanoid } from "nanoid";
 
 export async function shortenUrl(req, res) {
-  const { userId } = res.locals.session;
+  const userId = res.locals;
   const { url } = req.body;
   try {
     const shortUrl = nanoid();
@@ -13,14 +13,14 @@ export async function shortenUrl(req, res) {
     const id = await db.query(`SELECT id FROM urls WHERE "shortUrl" = $1`, [
       shortUrl,
     ]);
-    res.status(201).send({ id: id.rows[0], shortUrl: shortUrl });
+    res.status(201).send({ id: id.rows[0].id, shortUrl: shortUrl });
   } catch (err) {
     res.status(500).send(err.message);
   }
 }
 
 export async function deleteUrl(req, res) {
-  const { userId } = res.locals.session;
+  const userId = res.locals;
   const { urlId } = req.params;
   try {
     const url = await db.query(`SELECT * FROM urls WHERE id=$1;`, [urlId]);
@@ -38,7 +38,7 @@ export async function deleteUrl(req, res) {
 }
 
 export async function getUser(req, res) {
-  const { userId } = res.locals.session;
+  const userId = res.locals;
   let totalViews = 0;
   try {
     const user = await db.query(`SELECT id, name FROM users WHERE id=$1`, [

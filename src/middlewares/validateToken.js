@@ -10,7 +10,8 @@ export async function validateToken(req, res, next) {
     const session = await db.query(`SELECT "userId" FROM sessions WHERE token=$1`, [token]);
     if (session.rows.length == 0) return res.sendStatus(401);
 
-    res.locals.session = session.rows[0].userId;
+    res.locals = session.rows[0].userId;
+
 
     next();
   } catch (error) {

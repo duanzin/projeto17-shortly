@@ -144,12 +144,16 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.sessions VALUES (2, 2, 'c3efbe07-0761-48c0-af32-29fc6ca883b7', '2023-03-03 16:15:46.96935');
+INSERT INTO public.sessions VALUES (3, 3, '16cdefb0-eae7-451f-8634-fc45ad268875', '2023-03-03 16:32:56.829357');
+INSERT INTO public.sessions VALUES (4, 4, 'c94fbbd7-5bd3-4c41-8d32-ba4e6148dd4a', '2023-03-03 16:44:13.725761');
 
 
 --
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.urls VALUES (9, 'https://www.youtube.com/watch?v=bWJvzLKzr-Q', 4, 0, 'n-JsN3-Rw10eaMHQiriw3', '2023-03-03 17:14:43.522084');
 
 
 --
@@ -157,27 +161,30 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 INSERT INTO public.users VALUES (1, 'Joao', 'joao@driven.com', '$2b$10$xoKSd1lskorsg.AWS8j97ODjsv6oxBhWBqRWQj/rQW8walk00g.oS', '2023-03-03 15:52:21.14292');
+INSERT INTO public.users VALUES (2, 'miguel', 'lokal@gmail.com', '$2b$10$14VSDyQ8VY5Miw/LaVTBB.yMPq14nj51QETXFJKRiXtF0lAkRfH2a', '2023-03-03 16:11:44.788275');
+INSERT INTO public.users VALUES (3, 'negan', 'negan@driven.com.br', '$2b$10$mRzjzs1ce16rHMzQG1MS5u6jvN6eN05cz1HHGFsP/URBOl48AY1yi', '2023-03-03 16:32:36.992585');
+INSERT INTO public.users VALUES (4, 'lluk', 'duan@gmail.com', '$2b$10$iVO0tEttlWj6KTOV4nq1qeCZm8pVXQsLyrKavmiUkz8zDA1xTayPy', '2023-03-03 16:43:59.433478');
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sessions_id_seq', 4, true);
 
 
 --
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 1, false);
+SELECT pg_catalog.setval('public.urls_id_seq', 9, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
 
 
 --
@@ -186,14 +193,6 @@ SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 ALTER TABLE ONLY public.sessions
     ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
-
-
---
--- Name: sessions sessions_userId_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT "sessions_userId_key" UNIQUE ("userId");
 
 
 --

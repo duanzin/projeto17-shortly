@@ -59,7 +59,7 @@ export async function getUser(req, res) {
       visitCount: totalViews,
     };
 
-    userObj.urls = urls.rows;
+    userObj.shortenedUrls = urls.rows;
     res.status(200).send(userObj);
   } catch (err) {
     res.status(500).send(err.message);

@@ -17,8 +17,19 @@ export async function getUrl(req, res) {
 }
 
 export async function openUrl(req, res) {
-  const { url } = req.params;
+  const { shortUrl } = req.params;
   try {
+    const url = await db.query(
+      `SELECT url,views FROM urls WHERE "shortUrl"=$1`,
+      [shortUrl]
+    );
+    if (url.rows.length === 0) {
+      return res.sendStatus(404);
+    }
+    
+    await db.query(`UPDATE urls SET views=$1 WHERE "shortUrl"=$2`,[url.rows[0].views + 1, shortUrl]);
+
+    return res.redirect(url.rows[0].url)
   } catch (err) {
     res.status(500).send(err.message);
   }

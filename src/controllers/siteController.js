@@ -1,7 +1,7 @@
 import { db } from "../config/database.js";
 
 export async function getUrl(req, res) {
-  const { id } = req.params;
+  const id = req.params;
   try {
     const url = await db.query(
       `SELECT id,"shortUrl",url FROM urls WHERE id=$1`,
@@ -18,7 +18,7 @@ export async function getUrl(req, res) {
 }
 
 export async function openUrl(req, res) {
-  const { shortUrl } = req.params;
+  const shortUrl = req.params;
   try {
     const url = await db.query(
       `SELECT url,views FROM urls WHERE "shortUrl"=$1`,

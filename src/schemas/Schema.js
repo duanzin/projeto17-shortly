@@ -15,7 +15,7 @@ export const signupSchema = joi.object({
 export const signinSchema = joi.object({
   email: joi
   .string()
-  .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+  .email()
   .required(),
   senha: joi
   .string()

@@ -46,12 +46,12 @@ export async function getUser(req, res) {
       userId,
     ]);
     const urls = await db.query(
-      `SELECT id,"shortUrl",url,views FROM urls WHERE "userId"=$1`,
+      `SELECT id,"shortUrl",url,"visitCount" FROM urls WHERE "userId"=$1`,
       [userId]
     );
 
     for (let i = 0; i < urls.rows.length; i++) {
-      totalViews += urls.rows[i].views;
+      totalViews += urls.rows[i].visitCount;
     }
 
     const userObj = {

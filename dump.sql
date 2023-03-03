@@ -60,7 +60,7 @@ CREATE TABLE public.urls (
     id integer NOT NULL,
     url character varying(255) NOT NULL,
     "userId" integer NOT NULL,
-    views integer DEFAULT 0,
+    "visitCount" integer DEFAULT 0,
     "shortUrl" character varying(255) NOT NULL,
     "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
@@ -153,7 +153,6 @@ INSERT INTO public.sessions VALUES (4, 4, 'c94fbbd7-5bd3-4c41-8d32-ba4e6148dd4a'
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.urls VALUES (9, 'https://www.youtube.com/watch?v=bWJvzLKzr-Q', 4, 0, 'n-JsN3-Rw10eaMHQiriw3', '2023-03-03 17:14:43.522084');
 
 
 --

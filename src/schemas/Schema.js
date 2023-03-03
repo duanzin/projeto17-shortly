@@ -10,7 +10,7 @@ export const signupSchema = joi.object({
     .string()
     .pattern(new RegExp("^[a-zA-Z0-9]{1,30}$"))
     .required(),
-  confirmPassword: joi.valid(userData.password),
+  confirmPassword: joi.valid(joi.ref("password")),
 });
 
 export const signinSchema = joi.object({

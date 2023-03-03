@@ -17,7 +17,7 @@ export const signinSchema = joi.object({
   .string()
   .email()
   .required(),
-  senha: joi
+  password: joi
   .string()
   .required(),
 });
